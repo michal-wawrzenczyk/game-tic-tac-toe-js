@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8">  <!-- Unicode Transformation Format 8 bit -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script> <!-- "defer" attribute - script will be downloaded in parallel to parsing the page, and executed after the page has finished parsing. Thanks to this the script does not block the loading of the body content. -->
+    <title>Tic Tac Toe (JS game)</title>
 </head>
 <body>
-
+<div class="board" id="board"> <!-- There cannot be more than one element with the same id in HTML -->
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+    <div class="cell" data-cell></div>
+</div>
+<div class="message" id="message">
+    <div data-message-text>
+        <button id="restartButton">RESTART</button>
+    </div>
+</div>
 </body>
 </html>
