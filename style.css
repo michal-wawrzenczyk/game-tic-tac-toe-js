@@ -1,0 +1,63 @@
+/* "*" - everything selector. Selects all HTML elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+    /* This property allows us to include the padding and border in an element's total width and height. */
+}
+
+:root {
+    --cell-size: 150px;
+    --mark-size: calc(var(--cell-size)*.9);
+    /* Mark size will cover 90% of cell size. */
+}
+
+body {
+    margin: 0;
+    /* In most major browsers, the default margin is 8px on all sides. Property margin set to 0 removes default body margin.*/
+    background-color: darkslategray;
+}
+
+.board {
+    width: 100vw;
+    height: 100vh;
+    /* The board is gonna fill the entire screen (100vw = 100% viewport width). */
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    /* Everything inside of the board is gonna be centered inside the board div. */
+    justify-items: center;
+    align-items: center;
+    /* X's and O's will be centered inside the cells. */
+    grid-template-columns: repeat(3, auto);
+    /* It makes 3 separate auto-size columns from one 9 divs column. */
+}
+
+.cell {
+    width: var(--cell-size);
+    height: var(--cell-size);
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(3n + 1) {
+    border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+    border-right: none;
+}
+
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+    border-bottom: none;
+}
