@@ -107,7 +107,6 @@ body {
     background-color: darkgoldenrod;
 }
 
-
 .cell.o::before,
 .cell.o::after,
 /* When we are on a board with o (circle) class, we want to get to the cells that are not already occupied by X or O and we want to check when we hover over them and style before and after element  to be the same.  */
