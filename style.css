@@ -26,9 +26,9 @@ body {
     /* Everything inside of the board is gonna be centered inside the board div. */
     justify-items: center;
     align-items: center;
-    /* X's and O's will be centered inside the cells. */
+    /* X's and O's centered inside the cells. */
     grid-template-columns: repeat(3, auto);
-    /* It makes 3 separate auto-size columns from one 9 divs column. */
+    /* It makes 3 separate auto-size columns from one 9 div's column. */
 }
 
 .cell {
@@ -64,18 +64,32 @@ body {
 
 .cell.x::before,
 .cell.x::after {
+    background-color: red;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    background-color: darkred;
+}
+
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+    /* "not(.x):not(.o)" means the hover effect will occur only for empty cells. */
+.board.x .cell:not(.x):not(.o):hover::after {
     content: '';
     width: calc(var(--mark-size) * .15);
     height: var(--mark-size);
-    background-color: red;
     position: absolute;
 }
 
-.cell.x::before {
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
     transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
     transform: rotate(-45deg);
 }
 
