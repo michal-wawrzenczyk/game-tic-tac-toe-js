@@ -62,6 +62,11 @@ body {
     border-bottom: none;
 }
 
+.cell.x,
+.cell.o {
+    cursor: not-allowed;
+}
+
 .cell.x::before,
 .cell.x::after {
     background-color: red;
@@ -70,6 +75,7 @@ body {
 .board.x .cell:not(.x):not(.o):hover::before,
 .board.x .cell:not(.x):not(.o):hover::after {
     background-color: darkred;
+    /* The mark will be darker every time we hover an empty cell. */
 }
 
 .cell.x::before,
@@ -93,26 +99,34 @@ body {
     transform: rotate(-45deg);
 }
 
+.cell.o::before {
+    background-color: gold;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before {
+    background-color: darkgoldenrod;
+}
+
+
 .cell.o::before,
-.cell.o::after {
+.cell.o::after,
+/* When we are on a board with o (circle) class, we want to get to the cells that are not already occupied by X or O and we want to check when we hover over them and style before and after element  to be the same.  */
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after {
     content: '';
     border-radius: 50%;
     position: absolute;
 }
 
-.cell.o::before {
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
     width: calc(var(--mark-size) * .9);
     height: calc(var(--mark-size) * .9);
-    background-color: gold;
 }
 
-.cell.o::after {
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
     width: calc(var(--mark-size) * .7);
     height: calc(var(--mark-size) * .7);
     background-color: darkslategray;
-}
-
-.cell.x,
-.cell.o {
-    cursor: not-allowed;
 }
