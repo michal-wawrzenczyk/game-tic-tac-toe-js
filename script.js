@@ -1,6 +1,17 @@
 const x_CLASS = 'x';
 const o_CLASS = 'o';
 // we can easily use those strings throughout the code.
+const winning_COMBINATIONS = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+]
+// All possible winning combinations for the game
 
 const cellElements = document.querySelectorAll('[data-cell]');
 const board = document.getElementById('board');
@@ -18,7 +29,6 @@ function gameStart() {
     setBoardHoverClass();
 }
 
-
 function handleClick(e) {
     // console.log("clicked"); // to check in console if our function works properly
     // Place Mark
@@ -26,6 +36,9 @@ function handleClick(e) {
     const currentClass = oTurn ? o_CLASS : x_CLASS; // if it's circle turn, then we want to return the o_CLASS, otherwise return x_CLASS
     placeMark(cell, currentClass);
     // Check for Win
+    if (checkWin(currentClass)) {
+        console.log('Winner!');
+    }
     // Check for Draw
     // Switch Turns - if none of those above happen
     swapTurns();
@@ -52,4 +65,15 @@ function setBoardHoverClass() {
         board.classList.add(x_CLASS);
     }
     // if there is circle turn currently, then add the hover for circle class, otherwise add the hover for x class.
+}
+
+function checkWin(currentClass) {
+    // we want to check here all the winning combinations if some of those are met by the existing combination.
+    return winning_COMBINATIONS.some(combination => {
+        return combination.every(index => {
+            return cellElements[index].classList.contains(currentClass);
+            // we want to return cell elements of index - so which cells, f.ex. 0, 1, 2. and then we want to check the class list if it contains the current class
+        })
+    })
+    // it will return true, if any of the values inside it are true. Combination is going to loop over all the combinations. For each one it must check if all the values inside cell elements have the same class. If current class is placed in one of the all winning combinations - it wins. If every single cell inside the combination is correct for at least one of the winning combinations then it is a win.
 }
